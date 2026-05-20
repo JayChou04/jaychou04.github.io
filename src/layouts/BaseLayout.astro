@@ -1,0 +1,62 @@
+---
+import '@styles/global.css';
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import site from '@data/site.yaml';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : site.name;
+const metaDescription = description ?? site.bio;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:type" content="website" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <Nav />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  .site-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.75rem 2rem;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.85rem;
+    padding-top: 1.85rem;
+  }
+  @media (max-width: 640px) {
+    .site-wrapper {
+      padding: 1rem 1rem;
+    }
+    main {
+      gap: 1.4rem;
+      padding-top: 1.4rem;
+    }
+  }
+</style>

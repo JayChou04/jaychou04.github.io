@@ -1,0 +1,17 @@
+# TODO: replace placeholder values (scholar URL, twitter handle, affiliation) with real ones
+name: "Shih-Chieh (Jay) Chou"
+chinese_name: "周士傑"   # TODO: replace with your actual Chinese name; leave empty string "" to hide
+display_name: "Shih-Chieh Chou"
+short_name: "Jay Chou"
+affiliation: "PhD candidate · Robotics Institute, Carnegie Mellon"
+bio: |
+  I work on robot manipulation and learning from human demonstration. My
+  research aims to build robots that pick up new skills from a handful of
+  examples, in everyday unstructured environments.
+headshot: "/headshot.jpg"
+socials:
+  scholar: "https://scholar.google.com/citations?user=XXXXX"
+  github: "https://github.com/JayChou04"
+  twitter: "https://twitter.com/yourhandle"
+  email: "jaychou0819@gmail.com"
+  cv: "/cv.pdf"

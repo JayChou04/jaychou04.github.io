@@ -1,0 +1,83 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  prev?: CollectionEntry<'blog'>;
+  next?: CollectionEntry<'blog'>;
+}
+
+const { post, prev, next } = Astro.props;
+const { title, description, date, read_time } = post.data;
+
+const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+
+<BaseLayout title={title} description={description}>
+  <a href="/blog" class="back-link">
+    <Icon name="tabler:arrow-left" /> back to blog
+  </a>
+
+  <header class="post-header">
+    <h1>{title}</h1>
+    <p class="post-meta meta">
+      {formattedDate}{read_time ? ` · ${read_time} min read` : ''}
+    </p>
+  </header>
+
+  <article class="prose">
+    <slot />
+  </article>
+
+  {(prev || next) && (
+    <nav class="post-nav">
+      {prev ? (
+        <a href={`/blog/${prev.id}`} class="post-nav-link prev">
+          <span class="muted">← previous</span>
+          <span>{prev.data.title}</span>
+        </a>
+      ) : <span />}
+      {next ? (
+        <a href={`/blog/${next.id}`} class="post-nav-link next">
+          <span class="muted">next →</span>
+          <span>{next.data.title}</span>
+        </a>
+      ) : <span />}
+    </nav>
+  )}
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .back-link:hover { color: var(--text); }
+  .back-link :global(svg) { width: 14px; height: 14px; }
+
+  .post-header h1 { margin: 0 0 0.35rem; }
+  .post-meta { margin: 0; }
+
+  .post-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 0.5px solid var(--border);
+  }
+  .post-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    color: var(--text);
+    font-size: 14px;
+  }
+  .post-nav-link.next { text-align: right; }
+  .post-nav-link:hover { color: var(--link); }
+  .post-nav-link .muted { font-size: 12px; }
+</style>

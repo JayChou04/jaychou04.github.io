@@ -1,0 +1,65 @@
+---
+import site from '@data/site.yaml';
+
+const links = [
+  { href: '/#about', label: 'about', match: ['/'] },
+  { href: '/projects', label: 'projects', match: ['/projects'] },
+  { href: '/publications', label: 'publications', match: ['/publications'] },
+  { href: '/blog', label: 'blog', match: ['/blog'] },
+  { href: site.socials?.cv ?? '/cv.pdf', label: 'cv', external: true },
+];
+
+const path = Astro.url.pathname;
+const isActive = (matches: string[] | undefined): boolean => {
+  if (!matches) return false;
+  return matches.some((m) => (m === '/' ? path === '/' : path.startsWith(m)));
+};
+---
+
+<nav class="site-nav">
+  <a href="/" class="site-name">{site.short_name ?? site.name}</a>
+  <ul class="nav-links">
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: isActive(link.match) }]}
+          {...(link.external ? { target: '_blank', rel: 'noopener' } : {})}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 13px;
+  }
+  .site-name {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .nav-link {
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+  .nav-link:hover { color: var(--text); }
+  .nav-link.active {
+    color: var(--text);
+    font-weight: 500;
+  }
+</style>

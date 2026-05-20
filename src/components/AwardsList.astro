@@ -1,0 +1,79 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type AwardItem = {
+  title: string;
+  granter: string;
+  year: number | string;
+  icon?: string;
+};
+
+interface Props {
+  items: AwardItem[];
+}
+
+const { items } = Astro.props;
+
+const iconName = (raw: string | undefined): string => {
+  if (!raw) return 'tabler:award';
+  if (raw.includes(':')) return raw;
+  return `tabler:${raw}`;
+};
+---
+
+<section aria-labelledby="awards-heading">
+  <h2 id="awards-heading">Awards</h2>
+  <ul class="awards-list">
+    {items.map((item) => (
+      <li>
+        <span class="award-icon" aria-hidden="true">
+          <Icon name={iconName(item.icon)} />
+        </span>
+        <span class="award-body">
+          <span class="award-title">{item.title}</span>
+          <span class="award-meta meta">{item.granter} · {item.year}</span>
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  h2 { margin-bottom: 0.85rem; }
+  .awards-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.7rem;
+  }
+  .awards-list li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    column-gap: 0.75rem;
+    align-items: start;
+  }
+  .award-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--surface-subtle);
+    border-radius: 6px;
+    color: var(--text-secondary);
+  }
+  .award-icon :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+  .award-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    line-height: 1.4;
+  }
+  .award-title {
+    color: var(--text);
+  }
+</style>

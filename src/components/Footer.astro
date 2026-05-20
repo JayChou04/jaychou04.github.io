@@ -1,0 +1,30 @@
+---
+const lastUpdated = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+---
+
+<footer class="site-footer">
+  <span class="muted">last updated {lastUpdated}</span>
+  <span class="muted">
+    built with <a href="https://astro.build" target="_blank" rel="noopener">astro</a> ·
+    <a href="https://github.com/JayChou04/jaychou04.github.io" target="_blank" rel="noopener">source</a>
+  </span>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 2.5rem;
+    padding: 1rem 0;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 12px;
+  }
+  .site-footer a {
+    color: var(--text-secondary);
+  }
+  .site-footer a:hover {
+    color: var(--text);
+  }
+</style>

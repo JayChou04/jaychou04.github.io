@@ -1,0 +1,116 @@
+---
+import { Icon } from 'astro-icon/components';
+import site from '@data/site.yaml';
+
+const socials = site.socials ?? {};
+---
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>
+      {site.name}{site.chinese_name && <span class="chinese-name">{site.chinese_name}</span>}
+    </h1>
+    <p class="affiliation meta">
+      <Icon name="tabler:school" /> {site.affiliation}
+    </p>
+    <p class="bio">{site.bio}</p>
+    <div class="hero-socials">
+      {socials.scholar && (
+        <a href={socials.scholar} target="_blank" rel="noopener" class="hero-social">
+          <Icon name="tabler:user" /> Scholar
+        </a>
+      )}
+      {socials.github && (
+        <a href={socials.github} target="_blank" rel="noopener" class="hero-social">
+          <Icon name="tabler:brand-github" /> GitHub
+        </a>
+      )}
+      {socials.twitter && (
+        <a href={socials.twitter} target="_blank" rel="noopener" class="hero-social">
+          <Icon name="tabler:brand-x" /> Twitter
+        </a>
+      )}
+      {socials.email && (
+        <a href={`mailto:${socials.email}`} class="hero-social">
+          <Icon name="tabler:mail" /> Email
+        </a>
+      )}
+      {socials.cv && (
+        <a href={socials.cv} target="_blank" rel="noopener" class="hero-social">
+          <Icon name="tabler:file-text" /> CV
+        </a>
+      )}
+    </div>
+  </div>
+  {site.headshot && (
+    <div class="hero-photo">
+      <img src={site.headshot} alt={`Headshot of ${site.name}`} />
+    </div>
+  )}
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 110px;
+    gap: 2rem;
+    align-items: start;
+  }
+  .hero-text > * + * {
+    margin-top: 0.6rem;
+  }
+  h1 { margin: 0; }
+  .chinese-name {
+    margin-left: 0.45rem;
+    font-weight: 500;
+  }
+  .affiliation {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .affiliation :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+  .bio {
+    margin: 0.4rem 0 0;
+    color: var(--text);
+  }
+  .hero-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem !important;
+  }
+  .hero-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 13px;
+    color: var(--link);
+  }
+  .hero-social :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+  .hero-photo img {
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: var(--surface-subtle);
+  }
+  @media (max-width: 640px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-photo {
+      order: -1;
+    }
+    .hero-photo img {
+      width: 90px;
+      height: 90px;
+    }
+  }
+</style>

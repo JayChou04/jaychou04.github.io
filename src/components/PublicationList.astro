@@ -1,0 +1,31 @@
+---
+import PublicationItem from './PublicationItem.astro';
+
+type Publication = {
+  title: string;
+  authors: string[];
+  venue: string;
+  year: number;
+  thumbnail?: string;
+  links?: Record<string, string | undefined>;
+  bibtex?: string;
+  tags?: string[];
+};
+
+interface Props {
+  items: Publication[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="pub-list">
+  {items.map((pub) => <PublicationItem pub={pub} />)}
+</div>
+
+<style>
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

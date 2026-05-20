@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, thumbnail, tags } = project.data;
+
+const description = project.body?.split('\n').find((l) => l.trim() && !l.startsWith('#') && !l.startsWith('!'))?.trim() ?? '';
+const shortDescription = description.length > 110 ? description.slice(0, 107) + '…' : description;
+---
+
+<article class="project-card" data-tags={tags.join(' ')}>
+  <a href={`/projects/${project.id}`} class="project-card-link">
+    <div class="project-thumb">
+      <img src={thumbnail} alt="" loading="lazy" />
+    </div>
+    <div class="project-body">
+      <h3>{title}</h3>
+      {shortDescription && <p class="project-desc meta">{shortDescription}</p>}
+      <div class="project-tags">
+        {tags.map((tag) => <span class="chip">{tag}</span>)}
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .project-card {
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg);
+    transition: border-color 0.15s ease;
+  }
+  .project-card:hover {
+    border-color: var(--text-tertiary);
+  }
+  .project-card-link {
+    display: block;
+    color: inherit;
+  }
+  .project-thumb {
+    aspect-ratio: 16 / 9;
+    background: var(--surface-subtle);
+    overflow: hidden;
+  }
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .project-body {
+    padding: 0.85rem 0.95rem 0.95rem;
+  }
+  h3 {
+    margin-bottom: 0.25rem;
+  }
+  .project-desc {
+    margin: 0 0 0.55rem;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+</style>

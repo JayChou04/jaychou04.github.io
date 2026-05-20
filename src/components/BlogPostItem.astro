@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, date, read_time } = post.data;
+
+const formatDate = (d: Date): string =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+
+<article class="blog-item">
+  <h3 class="blog-title">
+    <a href={`/blog/${post.id}`}>{title}</a>
+  </h3>
+  <p class="blog-meta meta">
+    {formatDate(date)}{read_time ? ` · ${read_time} min read` : ''}
+  </p>
+  <p class="blog-desc">{description}</p>
+</article>
+
+<style>
+  .blog-item {
+    padding: 0.6rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .blog-item:last-child { border-bottom: none; }
+  .blog-title {
+    margin-bottom: 0.2rem;
+  }
+  .blog-title a { color: var(--text); }
+  .blog-title a:hover { color: var(--link); }
+  .blog-meta { margin: 0 0 0.2rem; }
+  .blog-desc {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+</style>
