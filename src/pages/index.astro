@@ -1,14 +1,12 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Hero.astro';
-import NewsList from '@components/NewsList.astro';
 import AwardsList from '@components/AwardsList.astro';
 import ProjectGrid from '@components/ProjectGrid.astro';
 import PublicationList from '@components/PublicationList.astro';
 import BlogList from '@components/BlogList.astro';
 
 import { getCollection } from 'astro:content';
-import news from '@data/news.yaml';
 import awards from '@data/awards.yaml';
 import publications from '@data/publications.yaml';
 
@@ -25,20 +23,12 @@ const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
 ---
 
 <BaseLayout>
   <Hero />
-  <NewsList items={(news as any[]).slice(0, 5)} />
-  <AwardsList items={awards as any[]} />
-
-  <section>
-    <h2>Selected projects</h2>
-    {projects.length > 0
-      ? <ProjectGrid projects={projects} />
-      : <p class="muted">No featured projects yet.</p>}
-    <a href="/projects" class="see-all">see all projects →</a>
-  </section>
+  <AwardsList items={awards as any[]} initial={3} />
 
   <section>
     <h2>Selected publications</h2>
@@ -46,6 +36,14 @@ const posts = (await getCollection('blog'))
       ? <PublicationList items={featuredPubs} />
       : <p class="muted">No featured publications yet.</p>}
     <a href="/publications" class="see-all">see all publications →</a>
+  </section>
+
+  <section>
+    <h2>Selected projects</h2>
+    {projects.length > 0
+      ? <ProjectGrid projects={projects} />
+      : <p class="muted">No featured projects yet.</p>}
+    <a href="/projects" class="see-all">see all projects →</a>
   </section>
 
   <section>

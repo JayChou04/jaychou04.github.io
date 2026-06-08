@@ -3,6 +3,10 @@ import { Icon } from 'astro-icon/components';
 import site from '@data/site.yaml';
 
 const socials = site.socials ?? {};
+const bioParagraphs = (site.bio as string)
+  .split(/\n\s*\n/)
+  .map((para) => para.trim())
+  .filter(Boolean);
 ---
 
 <section class="hero">
@@ -13,7 +17,9 @@ const socials = site.socials ?? {};
     <p class="affiliation meta">
       <Icon name="tabler:school" /> {site.affiliation}
     </p>
-    <p class="bio">{site.bio}</p>
+    <div class="bio">
+      {bioParagraphs.map((para) => <p set:html={para} />)}
+    </div>
     <div class="hero-socials">
       {socials.scholar && (
         <a href={socials.scholar} target="_blank" rel="noopener" class="hero-social">
@@ -25,19 +31,24 @@ const socials = site.socials ?? {};
           <Icon name="tabler:brand-github" /> GitHub
         </a>
       )}
-      {socials.twitter && (
+      {socials.linkedin && (
+        <a href={socials.linkedin} target="_blank" rel="noopener" class="hero-social">
+          <Icon name="tabler:brand-linkedin" /> LinkedIn
+        </a>
+      )}
+      <!-- {socials.twitter && (
         <a href={socials.twitter} target="_blank" rel="noopener" class="hero-social">
           <Icon name="tabler:brand-x" /> Twitter
         </a>
-      )}
+      )} -->
       {socials.email && (
         <a href={`mailto:${socials.email}`} class="hero-social">
           <Icon name="tabler:mail" /> Email
         </a>
       )}
-      {socials.cv && (
-        <a href={socials.cv} target="_blank" rel="noopener" class="hero-social">
-          <Icon name="tabler:file-text" /> CV
+      {socials.resume && (
+        <a href={socials.resume} target="_blank" rel="noopener" class="hero-social">
+          <Icon name="tabler:file-text" /> Resume
         </a>
       )}
     </div>
@@ -52,7 +63,7 @@ const socials = site.socials ?? {};
 <style>
   .hero {
     display: grid;
-    grid-template-columns: 1fr 110px;
+    grid-template-columns: 1fr 180px; /* photo column: keep this px equal to .hero-photo img width below; mobile size in the @media block */
     gap: 2rem;
     align-items: start;
   }
@@ -77,6 +88,16 @@ const socials = site.socials ?? {};
     margin: 0.4rem 0 0;
     color: var(--text);
   }
+  .bio p {
+    margin: 0;
+  }
+  .bio p + p {
+    margin-top: 0.7rem;
+  }
+  .bio a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
   .hero-socials {
     display: flex;
     flex-wrap: wrap;
@@ -94,9 +115,12 @@ const socials = site.socials ?? {};
     width: 14px;
     height: 14px;
   }
+  .hero-photo {
+    margin-top: 5rem;   /* push the photo lower; increase to lower more, decrease to raise */
+  }
   .hero-photo img {
-    width: 110px;
-    height: 110px;
+    width: 180px;
+    height: 180px;
     border-radius: 10px;
     object-fit: cover;
     background: var(--surface-subtle);
@@ -109,8 +133,8 @@ const socials = site.socials ?? {};
       order: -1;
     }
     .hero-photo img {
-      width: 90px;
-      height: 90px;
+      width: 130px;
+      height: 130px;
     }
   }
 </style>

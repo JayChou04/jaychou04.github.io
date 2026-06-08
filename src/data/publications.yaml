@@ -1,23 +1,26 @@
 # TODO: replace with real publications; full list (featured ones surface on the home page)
-- title: "Learning dexterous manipulation from in-the-wild human video"
+- title: "Rainbow-DemoRL: Combining Improvements in Demonstration-Augmented Reinforcement Learning"
   authors:
+    - "Dwait Bhatt"
     - "Shih-Chieh Chou"
-    - "Jordan Smith"
-    - "Karen Lee"
-  venue: "Robotics: Science and Systems (RSS)"
+    - "Nikolay Atanasov"
+  venue: "IEEE International Conference on Robotics & Automation (ICRA)"
   year: 2026
   thumbnail: "/publications/dex-video/thumb.jpg"
   links:
-    paper: "https://arxiv.org/abs/2605.xxxxx"
+    paper: "https://arxiv.org/abs/2603.27400"
     code: "https://github.com/JayChou04/dex-video"
     video: "https://youtu.be/xxxxx"
     project: "/projects/dexterous-grasping"
   bibtex: |
-    @inproceedings{chou2026dexterous,
-      title={Learning dexterous manipulation from in-the-wild human video},
-      author={Chou, Shih-Chieh and Smith, Jordan and Lee, Karen},
-      booktitle={Robotics: Science and Systems},
-      year={2026}
+    @misc{bhatt2026rainbowdemorlcombiningimprovementsdemonstrationaugmented,
+          title={Rainbow-DemoRL: Combining Improvements in Demonstration-Augmented Reinforcement Learning}, 
+          author={Dwait Bhatt and Shih-Chieh Chou and Nikolay Atanasov},
+          year={2026},
+          eprint={2603.27400},
+          archivePrefix={arXiv},
+          primaryClass={cs.RO},
+          url={https://arxiv.org/abs/2603.27400}, 
     }
   featured: true
   tags: ["manipulation", "imitation learning"]

@@ -4,38 +4,72 @@ import { Icon } from 'astro-icon/components';
 type AwardItem = {
   title: string;
   granter: string;
-  year: number | string;
+  date: Date | string;
   icon?: string;
 };
 
 interface Props {
   items: AwardItem[];
+  initial?: number;
 }
 
-const { items } = Astro.props;
+const { items, initial } = Astro.props;
 
 const iconName = (raw: string | undefined): string => {
   if (!raw) return 'tabler:award';
   if (raw.includes(':')) return raw;
   return `tabler:${raw}`;
 };
+
+const toDate = (v: Date | string): Date => (v instanceof Date ? v : new Date(v));
+const formatDate = (v: Date | string): string =>
+  toDate(v).toLocaleString('en-US', { month: 'short', year: 'numeric' });
+
+const sorted = [...items].sort(
+  (a, b) => toDate(b.date).getTime() - toDate(a.date).getTime(),
+);
+
+const showCount = initial && sorted.length > initial ? initial : sorted.length;
+const visible = sorted.slice(0, showCount);
+const hidden = sorted.slice(showCount);
 ---
 
 <section aria-labelledby="awards-heading">
   <h2 id="awards-heading">Awards</h2>
   <ul class="awards-list">
-    {items.map((item) => (
+    {visible.map((item) => (
       <li>
         <span class="award-icon" aria-hidden="true">
           <Icon name={iconName(item.icon)} />
         </span>
         <span class="award-body">
           <span class="award-title">{item.title}</span>
-          <span class="award-meta meta">{item.granter} · {item.year}</span>
+          <span class="award-meta meta">{item.granter} · {formatDate(item.date)}</span>
         </span>
       </li>
     ))}
   </ul>
+  {hidden.length > 0 && (
+    <details class="awards-more">
+      <summary class="see-all">
+        <span class="awards-toggle-closed">see all awards →</span>
+        <span class="awards-toggle-open">show less ↑</span>
+      </summary>
+      <ul class="awards-list awards-list-extra">
+        {hidden.map((item) => (
+          <li>
+            <span class="award-icon" aria-hidden="true">
+              <Icon name={iconName(item.icon)} />
+            </span>
+            <span class="award-body">
+              <span class="award-title">{item.title}</span>
+              <span class="award-meta meta">{item.granter} · {formatDate(item.date)}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
 </section>
 
 <style>
@@ -75,5 +109,24 @@ const iconName = (raw: string | undefined): string => {
   }
   .award-title {
     color: var(--text);
+  }
+  .awards-more {
+    display: flex;
+    flex-direction: column;
+  }
+  .awards-more > summary {
+    order: 1;
+    cursor: pointer;
+    list-style: none;
+  }
+  .awards-more > summary::-webkit-details-marker {
+    display: none;
+  }
+  .awards-more[open] .awards-toggle-closed,
+  .awards-more:not([open]) .awards-toggle-open {
+    display: none;
+  }
+  .awards-list-extra {
+    margin-top: 0.7rem;
   }
 </style>

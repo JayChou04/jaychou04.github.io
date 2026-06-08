@@ -2,11 +2,11 @@
 import site from '@data/site.yaml';
 
 const links = [
-  { href: '/#about', label: 'about', match: ['/'] },
-  { href: '/projects', label: 'projects', match: ['/projects'] },
-  { href: '/publications', label: 'publications', match: ['/publications'] },
-  { href: '/blog', label: 'blog', match: ['/blog'] },
-  { href: site.socials?.cv ?? '/cv.pdf', label: 'cv', external: true },
+  { href: '/#about', label: 'About', match: ['/'] },
+  { href: '/projects', label: 'Projects', match: ['/projects'] },
+  { href: '/publications', label: 'Publications', match: ['/publications'] },
+  { href: '/blog', label: 'Blog', match: ['/blog'] },
+  { href: site.socials?.resume ?? '/resume.pdf', label: 'Resume', external: true },
 ];
 
 const path = Astro.url.pathname;

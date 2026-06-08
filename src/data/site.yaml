@@ -1,17 +1,17 @@
-# TODO: replace placeholder values (scholar URL, twitter handle, affiliation) with real ones
 name: "Shih-Chieh (Jay) Chou"
-chinese_name: "周士傑"   # TODO: replace with your actual Chinese name; leave empty string "" to hide
+chinese_name: "周士傑"  
 display_name: "Shih-Chieh Chou"
-short_name: "Jay Chou"
-affiliation: "PhD candidate · Robotics Institute, Carnegie Mellon"
+short_name: ""
+affiliation: "Research Assistant, NYCU"
 bio: |
-  I work on robot manipulation and learning from human demonstration. My
-  research aims to build robots that pick up new skills from a handful of
-  examples, in everyday unstructured environments.
-headshot: "/headshot.jpg"
+  I like robots that have to deal with the messiness of the physical world — where good engineering on both the hardware and software side actually gets tested. That's what pulls me toward physical AI. I'm currently a research assistant at the <a href="https://sites.google.com/site/yitingchen0524/hcis-lab" target="_blank" rel="noopener">Human-Centered Intelligent System Lab</a>, NYCU, working on bimanual manipulation — recently exploring how robots might handle a full mug differently from an empty one.
+
+  I earned my BS from the Department of Mechanical and Electro-Mechanical Engineering, NSYSU, where I built my foundation in good old-fashioned engineering — dynamics and control theory. During my undergrad, I also spent a summer as a visiting scholar at the <a href="https://erl.ucsd.edu/" target="_blank" rel="noopener">Existential Robotics Lab</a>, UC San Diego, working on efficient ways to leverage offline demonstrations with online RL. Outside the lab, I'm into <a href="https://www.instagram.com/benjamin___photography/" target="_blank" rel="noopener">photography</a> and badminton — feel free to reach out over email.
+headshot: "/headshot_1.jpg"
 socials:
-  scholar: "https://scholar.google.com/citations?user=XXXXX"
+  scholar: "https://scholar.google.com.tw/citations?user=Blrv5NsAAAAJ&hl=zh-TW"
   github: "https://github.com/JayChou04"
-  twitter: "https://twitter.com/yourhandle"
+  linkedin: "https://www.linkedin.com/in/shih-chieh-chou"   
+  # twitter: "https://twitter.com/yourhandle"
   email: "jaychou0819@gmail.com"
-  cv: "/cv.pdf"
+  resume: "/resume.pdf"
