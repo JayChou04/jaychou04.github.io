@@ -9,6 +9,8 @@
   --surface-subtle: #f3f4f6;
   --link: #3b82f6;
   --link-hover: #2563eb;
+  --highlight: #eab308;        /* yellow-500 — accent (available; highlight uses the bg tint below) */
+  --highlight-bg: #fef9c3;     /* yellow-100 — background tint for highlighted items */
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -36,7 +38,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { font-size: 26px; line-height: 1.25; }
-h2 { font-size: 18px; line-height: 1.35; }
+h2 { font-size: 22px; line-height: 1.35; }
 h3 { font-size: 16px; line-height: 1.4; }
 
 a {

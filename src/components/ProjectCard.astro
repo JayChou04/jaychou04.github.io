@@ -6,13 +6,13 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, thumbnail, tags } = project.data;
+const { title, thumbnail, tags, highlight } = project.data;
 
 const description = project.body?.split('\n').find((l) => l.trim() && !l.startsWith('#') && !l.startsWith('!'))?.trim() ?? '';
 const shortDescription = description.length > 110 ? description.slice(0, 107) + '…' : description;
 ---
 
-<article class="project-card" data-tags={tags.join(' ')}>
+<article class:list={['project-card', { 'is-highlight': highlight }]} data-tags={tags.join(' ')}>
   <a href={`/projects/${project.id}`} class="project-card-link">
     <div class="project-thumb">
       <img src={thumbnail} alt="" loading="lazy" />
@@ -37,6 +37,9 @@ const shortDescription = description.length > 110 ? description.slice(0, 107) + 
   }
   .project-card:hover {
     border-color: var(--text-tertiary);
+  }
+  .project-card.is-highlight .project-body {
+    background: var(--highlight-bg);
   }
   .project-card-link {
     display: block;

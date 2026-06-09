@@ -14,9 +14,7 @@ const bioParagraphs = (site.bio as string)
     <h1>
       {site.name}{site.chinese_name && <span class="chinese-name">{site.chinese_name}</span>}
     </h1>
-    <p class="affiliation meta">
-      <Icon name="tabler:school" /> {site.affiliation}
-    </p>
+    <p class="affiliation meta">{site.affiliation}</p>
     <div class="bio">
       {bioParagraphs.map((para) => <p set:html={para} />)}
     </div>
@@ -75,15 +73,6 @@ const bioParagraphs = (site.bio as string)
     margin-left: 0.45rem;
     font-weight: 500;
   }
-  .affiliation {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-  }
-  .affiliation :global(svg) {
-    width: 14px;
-    height: 14px;
-  }
   .bio {
     margin: 0.4rem 0 0;
     color: var(--text);
@@ -116,7 +105,7 @@ const bioParagraphs = (site.bio as string)
     height: 14px;
   }
   .hero-photo {
-    margin-top: 5rem;   /* push the photo lower; increase to lower more, decrease to raise */
+    margin-top: 3.5rem;   /* push the photo lower; increase to lower more, decrease to raise */
   }
   .hero-photo img {
     width: 180px;

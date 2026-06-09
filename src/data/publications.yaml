@@ -1,4 +1,5 @@
-# TODO: replace with real publications; full list (featured ones surface on the home page)
+# TODO: replace with real publications; full list (featured ones surface on the home page).
+# Optional per entry: `highlight: true` adds a yellow background highlight.
 - title: "Rainbow-DemoRL: Combining Improvements in Demonstration-Augmented Reinforcement Learning"
   authors:
     - "Dwait Bhatt"
@@ -23,4 +24,5 @@
           url={https://arxiv.org/abs/2603.27400}, 
     }
   featured: true
+  highlight: true   # demo — remove (or set false) to turn the highlight off
   tags: ["manipulation", "imitation learning"]

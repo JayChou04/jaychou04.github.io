@@ -1,16 +1,23 @@
-# Each award: title, granter, date (YYYY-MM-DD — the day you received it), optional icon
+# Each award: title, granter, date (YYYY-MM-DD — the day you received it), optional icon.
+# Optional: add `highlight: true` to give an entry a yellow background highlight.
 # TODO: replace with real awards
-- title: "Outstanding Reviewer Award"
-  granter: "NeurIPS"
-  date: 2025-12-10
+- title: "3rd Place in Lab Experiment Track"
+  granter: "2nd What Bimanuals Can Do Competition"
+  date: 2026-06-04
   icon: "trophy"
 
-- title: "Best Student Paper Finalist"
-  granter: "IROS 2024 · Manipulation track"
-  date: 2024-10-15
-  icon: "medal"
-
-- title: "Graduate Research Fellowship"
-  granter: "National Science Foundation (NSF GRFP)"
-  date: 2023-04-01
+- title: "Certificate of Outstanding Graduates"
+  granter: "National Sun Yat-sen University"
+  date: 2026-05-23
   icon: "award"
+  highlight: true
+
+- title: "College Student Research Grant"
+  granter: "National Science and Technology Council"
+  date: 2025-06-30
+  icon: "certificate"
+
+- title: "J. Yang & Family Foundation Scholarship"
+  granter: "J. Yang & Family Foundation"
+  date: 2025-07-01
+  icon: "certificate"

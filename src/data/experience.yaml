@@ -1,0 +1,34 @@
+# Each entry: title (role), org, start (YYYY-MM-DD), end (YYYY-MM-DD or "present"), optional icon.
+# end may be "present", left blank, or omitted entirely → treated as ongoing (sorts to the top).
+# Renders as "Mon YYYY – Mon YYYY" (en dash) or "Mon YYYY – Present".
+# Optional: add `highlight: true` to give an entry a yellow background highlight.
+# TODO: replace with real experience.
+- title: "Research Assistant"
+  org: "Human-Centered Intelligent System Lab, NYCU"
+  start: 2025-01-01
+  end: present
+  icon: "microscope"
+
+- title: "Machine Learning Engineer Internship"
+  org: "Anvil Robotics"
+  start: 2026-07-01
+  end: present
+  icon: "briefcase"
+
+- title: "Visiting Scholar"
+  org: "Existential Robotics Lab, UC San Diego"
+  start: 2025-06-29
+  end: 2025-09-01
+  icon: "microscope"
+
+- title: "Undergraduate Researcher"
+  org: "Extreme Mechanics & Materials Group, NSYSU"
+  start: 2024-09-01
+  end: 2026-02-01
+  icon: "microscope"
+
+- title: "Data Analysis Engineer Internship"
+  org: "AMD Suzhou (TF-AMD)"
+  start: 2024-06-29
+  end: 2024-08-11
+  icon: "briefcase"

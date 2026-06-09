@@ -1,0 +1,156 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type ExperienceItem = {
+  title: string;
+  org: string;
+  start: Date | string;
+  end?: Date | string;   // absent / blank / "present" => ongoing
+  icon?: string;
+  highlight?: boolean;
+};
+
+interface Props {
+  items: ExperienceItem[];
+  initial?: number;
+}
+
+const { items, initial } = Astro.props;
+
+const iconName = (raw: string | undefined): string => {
+  if (!raw) return 'tabler:briefcase';
+  if (raw.includes(':')) return raw;
+  return `tabler:${raw}`;
+};
+
+const toDate = (v: Date | string): Date => (v instanceof Date ? v : new Date(v));
+const formatMonth = (v: Date | string): string =>
+  toDate(v).toLocaleString('en-US', { month: 'short', year: 'numeric' });
+
+// accepts undefined so it can guard item.end directly
+const isOngoing = (end: Date | string | undefined): boolean =>
+  end == null || (typeof end === 'string' && (end.trim() === '' || end.trim().toLowerCase() === 'present'));
+
+const formatRange = (item: ExperienceItem): string => {
+  const endLabel = isOngoing(item.end) ? 'Present' : formatMonth(item.end as Date | string);
+  return `${formatMonth(item.start)} – ${endLabel}`;
+};
+
+const PRESENT = Number.POSITIVE_INFINITY;
+const endValue = (e: ExperienceItem): number =>
+  isOngoing(e.end) ? PRESENT : toDate(e.end as Date | string).getTime();
+const startValue = (e: ExperienceItem): number => toDate(e.start).getTime();
+
+const sorted = [...items].sort((a, b) => {
+  const ea = endValue(a), eb = endValue(b);
+  if (eb !== ea) return eb - ea;          // end desc; ongoing (Infinity) on top
+  return startValue(b) - startValue(a);    // tie-break: start desc → earlier start lower
+});
+
+const showCount = initial && sorted.length > initial ? initial : sorted.length;
+const visible = sorted.slice(0, showCount);
+const hidden = sorted.slice(showCount);
+---
+
+<section aria-labelledby="experience-heading">
+  <h2 id="experience-heading">Experiences</h2>
+  <ul class="exp-list">
+    {visible.map((item) => (
+      <li class:list={[{ 'is-highlight': item.highlight }]}>
+        <span class="exp-icon" aria-hidden="true">
+          <Icon name={iconName(item.icon)} />
+        </span>
+        <span class="exp-body">
+          <span class="exp-title">{item.title}</span>
+          <span class="exp-meta meta">{item.org} · {formatRange(item)}</span>
+        </span>
+      </li>
+    ))}
+  </ul>
+  {hidden.length > 0 && (
+    <details class="exp-more">
+      <summary class="see-all">
+        <span class="exp-toggle-closed">see all experience →</span>
+        <span class="exp-toggle-open">show less ↑</span>
+      </summary>
+      <ul class="exp-list exp-list-extra">
+        {hidden.map((item) => (
+          <li class:list={[{ 'is-highlight': item.highlight }]}>
+            <span class="exp-icon" aria-hidden="true">
+              <Icon name={iconName(item.icon)} />
+            </span>
+            <span class="exp-body">
+              <span class="exp-title">{item.title}</span>
+              <span class="exp-meta meta">{item.org} · {formatRange(item)}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
+</section>
+
+<style>
+  h2 { margin-bottom: 0.85rem; }
+  .exp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.7rem;
+  }
+  .exp-list li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    column-gap: 0.75rem;
+    align-items: center;
+  }
+  .exp-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--surface-subtle);
+    border-radius: 6px;
+    color: var(--text-secondary);
+  }
+  .exp-icon :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+  .exp-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    line-height: 1.4;
+  }
+  .exp-title {
+    color: var(--text);
+  }
+  .exp-list li.is-highlight {
+    background: var(--highlight-bg);
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
+    margin: -0.35rem -0.6rem;   /* horizontal margin cancels padding so the icon stays aligned */
+  }
+  .exp-more {
+    display: flex;
+    flex-direction: column;
+  }
+  .exp-more > summary {
+    order: 1;
+    cursor: pointer;
+    list-style: none;
+  }
+  .exp-more > summary::-webkit-details-marker {
+    display: none;
+  }
+  .exp-more[open] .exp-toggle-closed,
+  .exp-more:not([open]) .exp-toggle-open {
+    display: none;
+  }
+  .exp-list-extra {
+    margin-top: 0.7rem;
+  }
+</style>

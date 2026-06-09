@@ -2,14 +2,23 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Hero.astro';
 import AwardsList from '@components/AwardsList.astro';
+import ExperienceList from '@components/ExperienceList.astro';
 import ProjectGrid from '@components/ProjectGrid.astro';
 import PublicationList from '@components/PublicationList.astro';
 import BlogList from '@components/BlogList.astro';
 
 import { getCollection } from 'astro:content';
 import awards from '@data/awards.yaml';
+import experience from '@data/experience.yaml';
 import publications from '@data/publications.yaml';
 
+// ── How many items each home-page section shows ───────────────────────────
+//   Projects:      .slice(0, 4)  below
+//   Publications:  .slice(0, 3)  below
+//   Posts:         .slice(0, 3)  below
+//   Awards / Experience: the `initial={5}` prop on the components in the markup
+//     (extra items stay reachable behind each list's "see all" expander)
+// ──────────────────────────────────────────────────────────────────────────
 const projects = (await getCollection('projects'))
   .filter((p) => p.data.featured)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -28,10 +37,9 @@ const posts = (await getCollection('blog'))
 
 <BaseLayout>
   <Hero />
-  <AwardsList items={awards as any[]} initial={3} />
 
   <section>
-    <h2>Selected publications</h2>
+    <h2>Publications</h2>
     {featuredPubs.length > 0
       ? <PublicationList items={featuredPubs} />
       : <p class="muted">No featured publications yet.</p>}
@@ -39,18 +47,41 @@ const posts = (await getCollection('blog'))
   </section>
 
   <section>
-    <h2>Selected projects</h2>
+    <h2>Projects</h2>
     {projects.length > 0
       ? <ProjectGrid projects={projects} />
       : <p class="muted">No featured projects yet.</p>}
     <a href="/projects" class="see-all">see all projects →</a>
   </section>
 
+  <div class="home-columns">
+    <AwardsList items={awards as any[]} initial={5} />
+    <ExperienceList items={experience as any[]} initial={5} />
+  </div>
+
   <section>
-    <h2>Recent posts</h2>
+    <h2>Posts</h2>
     {posts.length > 0
       ? <BlogList items={posts} />
       : <p class="muted">No posts yet.</p>}
     <a href="/blog" class="see-all">see all posts →</a>
   </section>
 </BaseLayout>
+
+<style>
+  section h2 {
+    margin-bottom: 0.85rem;   /* gap between a section title and its items, matching Awards/Experiences */
+  }
+  .home-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.85rem;          /* matches main's vertical rhythm */
+    align-items: start;    /* each card hugs its content; tops align */
+  }
+  @media (max-width: 640px) {
+    .home-columns {
+      grid-template-columns: 1fr;   /* stack: Awards above Experience */
+      gap: 1.4rem;
+    }
+  }
+</style>

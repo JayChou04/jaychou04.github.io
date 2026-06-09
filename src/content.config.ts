@@ -23,6 +23,7 @@ const projects = defineCollection({
     tags: z.array(z.string()).default([]),
     status: z.enum(['published', 'in-submission', 'workshop']).default('published'),
     featured: z.boolean().default(false),
+    highlight: z.boolean().default(false),
     bibtex: z.string().optional(),
   }),
 });
@@ -36,6 +37,7 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     read_time: z.number().optional(),
     draft: z.boolean().default(false),
+    highlight: z.boolean().default(false),
     cover_image: z.string().optional(),
   }),
 });

@@ -6,13 +6,13 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, date, read_time } = post.data;
+const { title, description, date, read_time, highlight } = post.data;
 
 const formatDate = (d: Date): string =>
   d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 ---
 
-<article class="blog-item">
+<article class:list={['blog-item', { 'is-highlight': highlight }]}>
   <h3 class="blog-title">
     <a href={`/blog/${post.id}`}>{title}</a>
   </h3>
@@ -28,6 +28,14 @@ const formatDate = (d: Date): string =>
     border-bottom: 0.5px solid var(--border);
   }
   .blog-item:last-child { border-bottom: none; }
+  .blog-item.is-highlight {
+    background: var(--highlight-bg);
+    border-radius: 6px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
   .blog-title {
     margin-bottom: 0.2rem;
   }

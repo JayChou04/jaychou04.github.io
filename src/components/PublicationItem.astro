@@ -19,6 +19,7 @@ type Publication = {
   links?: PubLinks;
   bibtex?: string;
   tags?: string[];
+  highlight?: boolean;
 };
 
 interface Props {
@@ -29,7 +30,7 @@ const { pub } = Astro.props;
 const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
 ---
 
-<article class="pub-item">
+<article class:list={['pub-item', { 'is-highlight': pub.highlight }]}>
   {pub.thumbnail && (
     <div class="pub-thumb">
       <img src={pub.thumbnail} alt="" loading="lazy" />
@@ -90,6 +91,14 @@ const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^
   }
   .pub-item:last-child {
     border-bottom: none;
+  }
+  .pub-item.is-highlight {
+    background: var(--highlight-bg);
+    border-radius: 6px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
   }
   .pub-thumb {
     aspect-ratio: 16 / 9;
