@@ -23,7 +23,9 @@ const allTags = Array.from(new Set(projects.flatMap((p) => p.data.tags))).sort()
   </div>
 
   <div id="projects-grid-wrap">
-    <ProjectGrid projects={projects} columns={3} />
+    {projects.length > 0
+      ? <ProjectGrid projects={projects} columns={3} />
+      : <p class="muted">No projects yet — coming soon.</p>}
   </div>
 </BaseLayout>
 

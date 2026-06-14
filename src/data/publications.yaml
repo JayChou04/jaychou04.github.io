@@ -7,12 +7,12 @@
     - "Nikolay Atanasov"
   venue: "IEEE International Conference on Robotics & Automation (ICRA)"
   year: 2026
-  thumbnail: "/publications/dex-video/thumb.jpg"
+  # thumbnail: "/publications/dex-video/thumb.jpg"
   links:
     paper: "https://arxiv.org/abs/2603.27400"
-    code: "https://github.com/JayChou04/dex-video"
-    video: "https://youtu.be/xxxxx"
-    project: "/projects/dexterous-grasping"
+    code: "https://github.com/dwaitbhatt/Rainbow-DemoRL"
+    # video: "https://youtu.be/xxxxx"
+    project: "https://dwaitbhatt.com/Rainbow-DemoRL/"
   bibtex: |
     @misc{bhatt2026rainbowdemorlcombiningimprovementsdemonstrationaugmented,
           title={Rainbow-DemoRL: Combining Improvements in Demonstration-Augmented Reinforcement Learning}, 
@@ -24,5 +24,5 @@
           url={https://arxiv.org/abs/2603.27400}, 
     }
   featured: true
-  highlight: true   # demo — remove (or set false) to turn the highlight off
-  tags: ["manipulation", "imitation learning"]
+  highlight: false
+  tags: ["reinforcement learning"]

@@ -4,7 +4,7 @@ import BlogLayout from '@layouts/BlogLayout.astro';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog'))
-    .filter((p) => !p.data.draft)
+    .filter((p) => !p.data.draft && !p.data.coming_soon)
     .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return posts.map((post, i) => ({

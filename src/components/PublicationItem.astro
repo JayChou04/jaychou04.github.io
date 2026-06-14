@@ -30,7 +30,7 @@ const { pub } = Astro.props;
 const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
 ---
 
-<article class:list={['pub-item', { 'is-highlight': pub.highlight }]}>
+<article class:list={['pub-item', { 'is-highlight': pub.highlight, 'no-thumb': !pub.thumbnail }]}>
   {pub.thumbnail && (
     <div class="pub-thumb">
       <img src={pub.thumbnail} alt="" loading="lazy" />
@@ -38,7 +38,13 @@ const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^
   )}
   <div class="pub-body">
     <h3 class="pub-title">
-      {pub.links?.project ? <a href={pub.links.project}>{pub.title}</a> : pub.title}
+      {pub.links?.project ? (
+        <a
+          href={pub.links.project}
+          target={pub.links.project.startsWith('http') ? '_blank' : undefined}
+          rel={pub.links.project.startsWith('http') ? 'noopener' : undefined}
+        >{pub.title}</a>
+      ) : pub.title}
     </h3>
     <p class="pub-authors">
       {pub.authors.map((author, i) => (
@@ -62,6 +68,16 @@ const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^
       {pub.links?.video && (
         <a class="action-button" href={pub.links.video} target="_blank" rel="noopener">
           <Icon name="tabler:player-play" /> video
+        </a>
+      )}
+      {pub.links?.project && (
+        <a
+          class="action-button"
+          href={pub.links.project}
+          target={pub.links.project.startsWith('http') ? '_blank' : undefined}
+          rel={pub.links.project.startsWith('http') ? 'noopener' : undefined}
+        >
+          <Icon name="tabler:layout-grid" /> project
         </a>
       )}
       {pub.links?.dataset && (
@@ -99,6 +115,9 @@ const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^
     padding-right: 0.75rem;
     margin-left: -0.75rem;
     margin-right: -0.75rem;
+  }
+  .pub-item.no-thumb {
+    grid-template-columns: 1fr;
   }
   .pub-thumb {
     aspect-ratio: 16 / 9;

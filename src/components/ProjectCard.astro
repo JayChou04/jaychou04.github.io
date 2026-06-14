@@ -6,25 +6,45 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, thumbnail, tags, highlight } = project.data;
+const { title, thumbnail, tags, highlight, coming_soon } = project.data;
 
 const description = project.body?.split('\n').find((l) => l.trim() && !l.startsWith('#') && !l.startsWith('!'))?.trim() ?? '';
 const shortDescription = description.length > 110 ? description.slice(0, 107) + '…' : description;
 ---
 
-<article class:list={['project-card', { 'is-highlight': highlight }]} data-tags={tags.join(' ')}>
-  <a href={`/projects/${project.id}`} class="project-card-link">
-    <div class="project-thumb">
-      <img src={thumbnail} alt="" loading="lazy" />
-    </div>
-    <div class="project-body">
-      <h3>{title}</h3>
-      {shortDescription && <p class="project-desc meta">{shortDescription}</p>}
-      <div class="project-tags">
-        {tags.map((tag) => <span class="chip">{tag}</span>)}
+<article class:list={['project-card', { 'is-highlight': highlight, 'is-coming-soon': coming_soon }]} data-tags={tags.join(' ')}>
+  {coming_soon ? (
+    <div class="project-card-link">
+      {thumbnail && (
+        <div class="project-thumb">
+          <img src={thumbnail} alt="" loading="lazy" />
+        </div>
+      )}
+      <div class="project-body">
+        <span class="coming-badge">Coming Soon</span>
+        <h3>{title}</h3>
+        {shortDescription && <p class="project-desc meta">{shortDescription}</p>}
+        <div class="project-tags">
+          {tags.map((tag) => <span class="chip">{tag}</span>)}
+        </div>
       </div>
     </div>
-  </a>
+  ) : (
+    <a href={`/projects/${project.id}`} class="project-card-link">
+      {thumbnail && (
+        <div class="project-thumb">
+          <img src={thumbnail} alt="" loading="lazy" />
+        </div>
+      )}
+      <div class="project-body">
+        <h3>{title}</h3>
+        {shortDescription && <p class="project-desc meta">{shortDescription}</p>}
+        <div class="project-tags">
+          {tags.map((tag) => <span class="chip">{tag}</span>)}
+        </div>
+      </div>
+    </a>
+  )}
 </article>
 
 <style>
@@ -40,6 +60,16 @@ const shortDescription = description.length > 110 ? description.slice(0, 107) + 
   }
   .project-card.is-highlight .project-body {
     background: var(--highlight-bg);
+  }
+  .project-card.is-coming-soon {
+    opacity: 0.7;
+    background: var(--surface-subtle);
+  }
+  .project-card.is-coming-soon:hover {
+    border-color: var(--border);
+  }
+  .project-card.is-coming-soon .project-card-link {
+    cursor: default;
   }
   .project-card-link {
     display: block;
@@ -68,5 +98,13 @@ const shortDescription = description.length > 110 ? description.slice(0, 107) + 
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
+  }
+  .coming-badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 0.35rem;
   }
 </style>

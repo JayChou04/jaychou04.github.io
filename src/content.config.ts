@@ -8,7 +8,7 @@ const projects = defineCollection({
     date: z.date(),
     venue: z.string().optional(),
     authors: z.array(z.string()),
-    thumbnail: z.string(),
+    thumbnail: z.string().optional(),
     hero_video: z.string().optional(),
     hero_image: z.string().optional(),
     icon: z.string().default('cube'),
@@ -24,6 +24,7 @@ const projects = defineCollection({
     status: z.enum(['published', 'in-submission', 'workshop']).default('published'),
     featured: z.boolean().default(false),
     highlight: z.boolean().default(false),
+    coming_soon: z.boolean().default(false),
     bibtex: z.string().optional(),
   }),
 });
@@ -38,6 +39,7 @@ const blog = defineCollection({
     read_time: z.number().optional(),
     draft: z.boolean().default(false),
     highlight: z.boolean().default(false),
+    coming_soon: z.boolean().default(false),
     cover_image: z.string().optional(),
   }),
 });

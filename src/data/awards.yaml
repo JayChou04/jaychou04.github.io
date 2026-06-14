@@ -6,7 +6,7 @@
   date: 2026-06-04
   icon: "trophy"
 
-- title: "Certificate of Outstanding Graduates"
+- title: "Outstanding Bachelor Graduate Award"
   granter: "National Sun Yat-sen University"
   date: 2026-05-23
   icon: "award"
@@ -21,3 +21,18 @@
   granter: "J. Yang & Family Foundation"
   date: 2025-07-01
   icon: "certificate"
+
+- title: "Excellent Student Award, Sophomore Fall Semester"
+  granter: "National Sun Yat-sen University"
+  date: 2023-12-01
+  icon: "award"
+
+- title: "Excellent Student Award, Sophomore Spring Semester"
+  granter: "National Sun Yat-sen University"
+  date: 2024-04-01
+  icon: "award"
+
+- title: "Excellent Student Award, Freshman Fall Semester"
+  granter: "National Sun Yat-sen University"
+  date: 2022-12-01
+  icon: "award"
