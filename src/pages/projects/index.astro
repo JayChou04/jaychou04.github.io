@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ProjectGrid from '@components/ProjectGrid.astro';
-import { getCollection } from 'astro:content';
+import { projects as allProjects } from '@lib/projects';
 
-const projects = (await getCollection('projects'))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const projects = [...allProjects].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+);
 
-const allTags = Array.from(new Set(projects.flatMap((p) => p.data.tags))).sort();
+const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 ---
 
 <BaseLayout title="Projects">

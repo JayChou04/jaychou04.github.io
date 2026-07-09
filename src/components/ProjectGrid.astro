@@ -1,9 +1,9 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { Project } from '@lib/projects';
 import ProjectCard from './ProjectCard.astro';
 
 interface Props {
-  projects: CollectionEntry<'projects'>[];
+  projects: Project[];
   columns?: 2 | 3;
 }
 

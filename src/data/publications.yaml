@@ -26,3 +26,23 @@
   featured: true
   highlight: false
   tags: ["reinforcement learning"]
+- title: "Example Paper: A Self-Hosted Publication Page"
+  authors:
+    - "Shih-Chieh Chou"
+    - "Ada Lovelace"
+  venue: "Demo Conference (DEMO)"
+  year: 2026
+  links:
+    paper: "https://arxiv.org/abs/0000.00000"
+    code: "https://github.com/JayChou04/jaychou04.github.io"
+    project: "/publications/example"
+  bibtex: |
+    @inproceedings{chou2026examplepaper,
+          title={Example Paper: A Self-Hosted Publication Page},
+          author={Shih-Chieh Chou and Ada Lovelace},
+          booktitle={Proceedings of the Demo Conference},
+          year={2026},
+    }
+  featured: false
+  highlight: false
+  tags: ["template"]

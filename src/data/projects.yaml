@@ -1,0 +1,28 @@
+# Project metadata. Each entry renders a card on the home page + /projects grid.
+# The detail page for each project is a hand-written .astro file at src/pages/projects/<slug>.astro
+# (the card links to /projects/<slug>). Fields: slug, title, authors, date, venue?, tags,
+# thumbnail, blurb, featured, highlight?, links{paper?,code?,video?,dataset?}, bibtex?.
+- slug: example
+  title: "Example Project: A Template for Hand-Written Project Pages"
+  authors:
+    - "Shih-Chieh Chou"
+    - "Ada Lovelace"
+    - "Alan Turing"
+  date: 2026-06-01
+  venue: "Demo Venue 2026"
+  tags: ["Template", "Demo"]
+  thumbnail: "/placeholder.svg"
+  blurb: "A starter project page you can copy — full HTML/CSS control with a shared header."
+  featured: true
+  highlight: false
+  links:
+    paper: "https://arxiv.org/abs/0000.00000"
+    code: "https://github.com/JayChou04/jaychou04.github.io"
+    video: "https://youtu.be/dQw4w9WgXcQ"
+  bibtex: |
+    @article{chou2026example,
+      title   = {Example Project: A Template for Hand-Written Project Pages},
+      author  = {Chou, Shih-Chieh and Lovelace, Ada and Turing, Alan},
+      journal = {Journal of Demonstrations},
+      year    = {2026},
+    }

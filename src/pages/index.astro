@@ -11,6 +11,7 @@ import { getCollection } from 'astro:content';
 import awards from '@data/awards.yaml';
 import experience from '@data/experience.yaml';
 import publications from '@data/publications.yaml';
+import { projects as allProjects } from '@lib/projects';
 
 // ── How many items each home-page section shows ───────────────────────────
 //   Projects:      .slice(0, 4)  below
@@ -19,9 +20,9 @@ import publications from '@data/publications.yaml';
 //   Awards / Experience: the `initial={5}` prop on the components in the markup
 //     (extra items stay reachable behind each list's "see all" expander)
 // ──────────────────────────────────────────────────────────────────────────
-const projects = (await getCollection('projects'))
-  .filter((p) => p.data.featured)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const projects = allProjects
+  .filter((p) => p.featured)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   .slice(0, 4);
 
 const featuredPubs = (publications as any[])

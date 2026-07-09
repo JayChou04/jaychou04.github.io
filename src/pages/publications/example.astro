@@ -1,0 +1,69 @@
+---
+import PaperLayout from '@layouts/PaperLayout.astro';
+---
+
+<PaperLayout
+  title="Example Paper: A Self-Hosted Publication Page"
+  authors={["Shih-Chieh Chou", "Ada Lovelace"]}
+  venue="Demo Conference (DEMO)"
+  date="2026-05-01"
+  links={{ paper: "https://arxiv.org/abs/0000.00000", code: "https://github.com/JayChou04/jaychou04.github.io" }}
+  bibtex={`@inproceedings{chou2026examplepaper,
+  title     = {Example Paper: A Self-Hosted Publication Page},
+  author    = {Chou, Shih-Chieh and Lovelace, Ada},
+  booktitle = {Proceedings of the Demo Conference},
+  year      = {2026},
+}`}
+  backHref="/publications"
+  backLabel="back to publications"
+>
+  <img class="teaser" src="/placeholder.svg" alt="Teaser figure" />
+
+  <h2>Abstract</h2>
+  <p>
+    This page is a self-hosted paper landing page, hand-written as a plain <code>.astro</code>
+    file rather than generated from an entry in <code>publications.yaml</code>. It is useful
+    when a publication needs its own bespoke layout — extra figures, an embedded video, or
+    custom formatting — beyond what the shared card grid can express.
+  </p>
+
+  <h2>Method</h2>
+  <p>
+    As with the project template, only the body between the <code>PaperLayout</code> tags is
+    hand-written here; the header (title, authors, venue, links) and the BibTeX block are
+    passed in as props and rendered automatically.
+  </p>
+
+  <div class="two-col">
+    <figure><img src="/placeholder.svg" alt="" /><figcaption>Left: figure A.</figcaption></figure>
+    <figure><img src="/placeholder.svg" alt="" /><figcaption>Right: figure B.</figcaption></figure>
+  </div>
+
+  <h2>Results</h2>
+  <table class="results">
+    <thead><tr><th>Method</th><th>Metric ↑</th><th>Error ↓</th></tr></thead>
+    <tbody>
+      <tr><td>Baseline</td><td>0.81</td><td>0.14</td></tr>
+      <tr><td><strong>Ours</strong></td><td><strong>0.93</strong></td><td><strong>0.07</strong></td></tr>
+    </tbody>
+  </table>
+
+  <!--
+    To use a hero video instead of an image, drop an mp4 in /public and swap the teaser for:
+    <video src="/projects/example/demo.mp4" autoplay loop muted playsinline></video>
+  -->
+
+  <style>
+    .teaser { width: 100%; border-radius: 10px; margin-bottom: 1.5rem; }
+    h2 { margin: 1.6rem 0 0.6rem; }
+    p { margin: 0.6rem 0; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    .two-col figure { margin: 0; }
+    .two-col img { width: 100%; border-radius: 8px; }
+    .two-col figcaption { font-size: 12px; color: var(--text-secondary); margin-top: 0.4rem; }
+    .results { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 14px; }
+    .results th, .results td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 0.5px solid var(--border); }
+    .results thead th { color: var(--text-secondary); font-weight: 500; }
+    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+  </style>
+</PaperLayout>

@@ -1,0 +1,142 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from './BaseLayout.astro';
+import { isOwner } from '@lib/authors';
+
+interface Props {
+  title: string;
+  authors?: string[];
+  venue?: string;
+  date?: Date | string;
+  links?: {
+    paper?: string;
+    code?: string;
+    video?: string;
+    dataset?: string;
+    project?: string;
+  };
+  bibtex?: string;
+  backHref?: string;
+  backLabel?: string;
+}
+
+const {
+  title,
+  authors,
+  venue,
+  date,
+  links,
+  bibtex,
+  backHref = '/projects',
+  backLabel = 'back to projects',
+} = Astro.props;
+
+const d = date ? new Date(date) : null;
+const formattedDate = d ? d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : null;
+const metaParts = [venue, formattedDate].filter(Boolean);
+---
+
+<BaseLayout title={title} description={title}>
+  <a href={backHref} class="back-link">
+    <Icon name="tabler:arrow-left" /> {backLabel}
+  </a>
+
+  <header class="paper-header">
+    <h1>{title}</h1>
+    {authors?.length && (
+      <p class="paper-authors">
+        {authors.map((author, i) => (
+          <>
+            {isOwner(author) ? <strong>{author}</strong> : <span>{author}</span>}{i < authors.length - 1 ? ', ' : ''}
+          </>
+        ))}
+      </p>
+    )}
+    {metaParts.length > 0 && (
+      <p class="paper-meta meta">{metaParts.join(' · ')}</p>
+    )}
+    <div class="paper-actions">
+      {links?.paper && (
+        <a class="action-button" href={links.paper} target="_blank" rel="noopener">
+          <Icon name="tabler:file-text" /> paper
+        </a>
+      )}
+      {links?.code && (
+        <a class="action-button" href={links.code} target="_blank" rel="noopener">
+          <Icon name="tabler:brand-github" /> code
+        </a>
+      )}
+      {links?.video && (
+        <a class="action-button" href={links.video} target="_blank" rel="noopener">
+          <Icon name="tabler:player-play" /> video
+        </a>
+      )}
+      {links?.project && (
+        <a
+          class="action-button"
+          href={links.project}
+          target={links.project.startsWith('http') ? '_blank' : undefined}
+          rel={links.project.startsWith('http') ? 'noopener' : undefined}
+        >
+          <Icon name="tabler:layout-grid" /> project
+        </a>
+      )}
+      {links?.dataset && (
+        <a class="action-button" href={links.dataset} target="_blank" rel="noopener">
+          <Icon name="tabler:database" /> dataset
+        </a>
+      )}
+    </div>
+  </header>
+
+  <div class="paper-content">
+    <slot />
+  </div>
+
+  {bibtex && (
+    <section class="bibtex-section">
+      <h2>BibTeX</h2>
+      <pre>{bibtex.trim()}</pre>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .back-link:hover { color: var(--text); }
+  .back-link :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+
+  .paper-header > * + * {
+    margin-top: 0.5rem;
+  }
+  .paper-header h1 { margin: 0; }
+  .paper-authors {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .paper-authors strong { color: var(--text); font-weight: 600; }
+  .paper-meta { margin: 0; }
+  .paper-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.85rem !important;
+  }
+
+  .paper-content {
+    margin-top: 1.5rem;
+  }
+
+  .bibtex-section h2 { margin-bottom: 0.6rem; }
+  .bibtex-section pre { font-size: 12px; }
+</style>
