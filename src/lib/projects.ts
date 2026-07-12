@@ -13,6 +13,7 @@ export interface Project {
   highlight?: boolean;
   links?: {
     paper?: string;
+    technicalreport?: string;
     code?: string;
     video?: string;
     dataset?: string;

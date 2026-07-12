@@ -1,0 +1,22 @@
+---
+import type { Project } from '@lib/projects';
+import ProjectListItem from './ProjectListItem.astro';
+
+interface Props {
+  items: Project[];
+  showTags?: boolean;
+}
+
+const { items, showTags = false } = Astro.props;
+---
+
+<div class="proj-list">
+  {items.map((p) => <ProjectListItem project={p} showTags={showTags} />)}
+</div>
+
+<style>
+  .proj-list {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

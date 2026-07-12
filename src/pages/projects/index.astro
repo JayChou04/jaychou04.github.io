@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import ProjectGrid from '@components/ProjectGrid.astro';
+import ProjectList from '@components/ProjectList.astro';
 import { projects as allProjects } from '@lib/projects';
 
 const projects = [...allProjects].sort(
@@ -25,7 +25,7 @@ const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 
   <div id="projects-grid-wrap">
     {projects.length > 0
-      ? <ProjectGrid projects={projects} columns={3} />
+      ? <ProjectList items={projects} showTags />
       : <p class="muted">No projects yet — coming soon.</p>}
   </div>
 </BaseLayout>
@@ -41,7 +41,7 @@ const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-filters .chip-button');
-  const cards = document.querySelectorAll<HTMLElement>('#projects-grid-wrap .project-card');
+  const cards = document.querySelectorAll<HTMLElement>('#projects-grid-wrap .proj-item');
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {

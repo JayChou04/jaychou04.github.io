@@ -1,0 +1,156 @@
+---
+import { Icon } from 'astro-icon/components';
+import { isOwner } from '@lib/authors';
+import type { Project } from '@lib/projects';
+
+interface Props {
+  project: Project;
+  showTags?: boolean;
+}
+
+const { project, showTags = false } = Astro.props;
+const href = `/projects/${project.slug}`;
+const id = `bib-proj-${project.slug}`;
+---
+
+<article
+  class:list={['proj-item', { 'is-highlight': project.highlight, 'no-thumb': !project.thumbnail }]}
+  data-tags={project.tags.join(' ')}
+>
+  {project.thumbnail && (
+    <div class="proj-thumb">
+      <a href={href}><img src={project.thumbnail} alt="" loading="lazy" /></a>
+    </div>
+  )}
+  <div class="proj-body">
+    <h3 class="proj-title">
+      <a href={href}>{project.title}</a>
+    </h3>
+    {project.authors?.length > 0 && (
+      <p class="proj-authors">
+        {project.authors.map((author, i) => (
+          <>
+            {isOwner(author) ? <strong>{author}</strong> : <span>{author}</span>}{i < project.authors.length - 1 ? ', ' : ''}
+          </>
+        ))}
+      </p>
+    )}
+    {project.blurb && <p class="proj-blurb meta">{project.blurb}</p>}
+    {showTags && project.tags?.length > 0 && (
+      <div class="proj-tags">
+        {project.tags.map((tag) => <span class="chip">{tag}</span>)}
+      </div>
+    )}
+    <div class="proj-actions">
+      {project.links?.technicalreport && (
+        <a class="action-button" href={project.links.technicalreport} target="_blank" rel="noopener">
+          <Icon name="tabler:report" /> Technical Report
+        </a>
+      )}
+      {project.links?.code && (
+        <a class="action-button" href={project.links.code} target="_blank" rel="noopener">
+          <Icon name="tabler:brand-github" /> Code
+        </a>
+      )}
+      {project.links?.video && (
+        <a class="action-button" href={project.links.video} target="_blank" rel="noopener">
+          <Icon name="tabler:player-play" /> Video
+        </a>
+      )}
+      {project.links?.dataset && (
+        <a class="action-button" href={project.links.dataset} target="_blank" rel="noopener">
+          <Icon name="tabler:database" /> Dataset
+        </a>
+      )}
+      {project.bibtex && (
+        <button class="action-button" type="button" data-proj-bibtex-toggle={id}>
+          <Icon name="tabler:quote" /> BibTeX
+        </button>
+      )}
+    </div>
+    {project.bibtex && (
+      <pre id={id} class="proj-bibtex" hidden>{project.bibtex.trim()}</pre>
+    )}
+  </div>
+</article>
+
+<style>
+  .proj-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .proj-item:last-child {
+    border-bottom: none;
+  }
+  .proj-item.is-highlight {
+    background: var(--highlight-bg);
+    border-radius: 6px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
+  .proj-item.no-thumb {
+    grid-template-columns: 1fr;
+  }
+  .proj-thumb {
+    aspect-ratio: 16 / 9;
+    background: var(--surface-subtle);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .proj-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .proj-body { min-width: 0; }
+  .proj-title {
+    margin-bottom: 0.2rem;
+  }
+  .proj-title a { color: var(--text); }
+  .proj-title a:hover { color: var(--link); }
+  .proj-authors {
+    margin: 0 0 0.1rem;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .proj-authors strong { color: var(--text); font-weight: 600; }
+  .proj-blurb { margin: 0 0 0.55rem; }
+  .proj-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0 0 0.55rem;
+  }
+  .proj-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .proj-bibtex {
+    margin-top: 0.6rem;
+    font-size: 12px;
+  }
+  @media (max-width: 640px) {
+    .proj-item {
+      grid-template-columns: 1fr;
+    }
+    .proj-thumb { max-width: 200px; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-proj-bibtex-toggle]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-proj-bibtex-toggle');
+      if (!id) return;
+      const pre = document.getElementById(id);
+      if (!pre) return;
+      pre.hidden = !pre.hidden;
+    });
+  });
+</script>
