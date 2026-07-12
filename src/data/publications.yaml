@@ -11,7 +11,6 @@
   links:
     paper: "https://arxiv.org/abs/2603.27400"
     code: "https://github.com/dwaitbhatt/Rainbow-DemoRL"
-    # video: "https://youtu.be/xxxxx"
     project: "https://dwaitbhatt.com/Rainbow-DemoRL/"
   bibtex: |
     @misc{bhatt2026rainbowdemorlcombiningimprovementsdemonstrationaugmented,
@@ -26,6 +25,7 @@
   featured: true
   highlight: false
   tags: ["reinforcement learning"]
+
 - title: "Example Paper: A Self-Hosted Publication Page"
   authors:
     - "Shih-Chieh Chou"

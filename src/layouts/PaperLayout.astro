@@ -10,6 +10,7 @@ interface Props {
   date?: Date | string;
   links?: {
     paper?: string;
+    technicalreport?: string;
     code?: string;
     video?: string;
     dataset?: string;
@@ -58,17 +59,22 @@ const metaParts = [venue, formattedDate].filter(Boolean);
     <div class="paper-actions">
       {links?.paper && (
         <a class="action-button" href={links.paper} target="_blank" rel="noopener">
-          <Icon name="tabler:file-text" /> paper
+          <Icon name="tabler:file-text" /> Paper
+        </a>
+      )}
+      {links?.technicalreport && (
+        <a class="action-button" href={links.technicalreport} target="_blank" rel="noopener">
+          <Icon name="tabler:report" /> Technical Report
         </a>
       )}
       {links?.code && (
         <a class="action-button" href={links.code} target="_blank" rel="noopener">
-          <Icon name="tabler:brand-github" /> code
+          <Icon name="tabler:brand-github" /> Code
         </a>
       )}
       {links?.video && (
         <a class="action-button" href={links.video} target="_blank" rel="noopener">
-          <Icon name="tabler:player-play" /> video
+          <Icon name="tabler:player-play" /> Video
         </a>
       )}
       {links?.project && (
@@ -78,12 +84,12 @@ const metaParts = [venue, formattedDate].filter(Boolean);
           target={links.project.startsWith('http') ? '_blank' : undefined}
           rel={links.project.startsWith('http') ? 'noopener' : undefined}
         >
-          <Icon name="tabler:layout-grid" /> project
+          <Icon name="tabler:layout-grid" /> Project
         </a>
       )}
       {links?.dataset && (
         <a class="action-button" href={links.dataset} target="_blank" rel="noopener">
-          <Icon name="tabler:database" /> dataset
+          <Icon name="tabler:database" /> Dataset
         </a>
       )}
     </div>

@@ -1,7 +1,7 @@
 # Each award: title, granter, date (YYYY-MM-DD — the day you received it), optional icon.
 # Optional: add `highlight: true` to give an entry a yellow background highlight.
 # TODO: replace with real awards
-- title: "3rd Place in Lab Experiment Track"
+- title: "3rd Place in Lab Experiment Track (Vienna track)"
   granter: "2nd What Bimanuals Can Do Competition"
   date: 2026-06-04
   icon: "trophy"

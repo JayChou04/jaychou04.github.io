@@ -57,17 +57,17 @@ const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^
     <div class="pub-actions">
       {pub.links?.paper && (
         <a class="action-button" href={pub.links.paper} target="_blank" rel="noopener">
-          <Icon name="tabler:file-text" /> paper
+          <Icon name="tabler:file-text" /> Paper
         </a>
       )}
       {pub.links?.code && (
         <a class="action-button" href={pub.links.code} target="_blank" rel="noopener">
-          <Icon name="tabler:brand-github" /> code
+          <Icon name="tabler:brand-github" /> Code
         </a>
       )}
       {pub.links?.video && (
         <a class="action-button" href={pub.links.video} target="_blank" rel="noopener">
-          <Icon name="tabler:player-play" /> video
+          <Icon name="tabler:player-play" /> Video
         </a>
       )}
       {pub.links?.project && (
@@ -77,17 +77,17 @@ const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^
           target={pub.links.project.startsWith('http') ? '_blank' : undefined}
           rel={pub.links.project.startsWith('http') ? 'noopener' : undefined}
         >
-          <Icon name="tabler:layout-grid" /> project
+          <Icon name="tabler:layout-grid" /> Project
         </a>
       )}
       {pub.links?.dataset && (
         <a class="action-button" href={pub.links.dataset} target="_blank" rel="noopener">
-          <Icon name="tabler:database" /> dataset
+          <Icon name="tabler:database" /> Dataset
         </a>
       )}
       {pub.bibtex && (
         <button class="action-button" type="button" data-bibtex-toggle={id}>
-          <Icon name="tabler:quote" /> bibtex
+          <Icon name="tabler:quote" /> BibTeX
         </button>
       )}
     </div>

@@ -2,6 +2,24 @@
 # The detail page for each project is a hand-written .astro file at src/pages/projects/<slug>.astro
 # (the card links to /projects/<slug>). Fields: slug, title, authors, date, venue?, tags,
 # thumbnail, blurb, featured, highlight?, links{paper?,code?,video?,dataset?}, bibtex?.
+- slug: im2prop
+  title: "Example Project: A Template for Hand-Written Project Pages"
+  authors:
+    - "Shih-Chieh Chou"
+    - "Ada Lovelace"
+    - "Alan Turing"
+  date: 2026-06-01
+  venue: "Demo Venue 2026"
+  tags: ["Template", "Demo"]
+  thumbnail: "/placeholder.svg"
+  blurb: "A starter project page you can copy — full HTML/CSS control with a shared header."
+  featured: true
+  highlight: false
+  links:
+    technicalreport: "https://arxiv.org/abs/0000.00000"
+    code: "https://github.com/JayChou04/jaychou04.github.io"
+    dataset: "test"
+
 - slug: example
   title: "Example Project: A Template for Hand-Written Project Pages"
   authors:
@@ -16,7 +34,7 @@
   featured: true
   highlight: false
   links:
-    paper: "https://arxiv.org/abs/0000.00000"
+    technicalreport: "https://arxiv.org/abs/0000.00000"
     code: "https://github.com/JayChou04/jaychou04.github.io"
     video: "https://youtu.be/dQw4w9WgXcQ"
   bibtex: |
