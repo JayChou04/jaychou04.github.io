@@ -24,25 +24,40 @@
     }
   featured: true
   highlight: false
-  tags: ["reinforcement learning"]
+  tags:
 
-- title: "Example Paper: A Self-Hosted Publication Page"
+- title: "From Images to Properties: Machine Learning for Microstructure-Based Predictions"
   authors:
     - "Shih-Chieh Chou"
-    - "Ada Lovelace"
-  venue: "Demo Conference (DEMO)"
-  year: 2026
+    - "I-Chieh Cheng"
+    - "Bo-Shiuan Li (Oral Presentation)"
+  venue: "The 22nd International Conference on Automation Technology (Automation)"
+  year: 2025
   links:
-    paper: "https://arxiv.org/abs/0000.00000"
-    code: "https://github.com/JayChou04/jaychou04.github.io"
-    project: "/publications/example"
-  bibtex: |
-    @inproceedings{chou2026examplepaper,
-          title={Example Paper: A Self-Hosted Publication Page},
-          author={Shih-Chieh Chou and Ada Lovelace},
-          booktitle={Proceedings of the Demo Conference},
-          year={2026},
-    }
-  featured: false
+    paper: "https://jaychou04.github.io/IM2PROP/IM2PROP.pdf"
+    code: "https://github.com/JayChou04/IM2PROP"
+    project: "https://jaychou04.github.io/IM2PROP/"
+  featured: true
   highlight: false
-  tags: ["template"]
+  tags:
+
+# - title: "Example Paper: A Self-Hosted Publication Page"
+#   authors:
+#     - "Shih-Chieh Chou"
+#     - "Ada Lovelace"
+#   venue: "Demo Conference (DEMO)"
+#   year: 2026
+#   links:
+#     paper: "https://arxiv.org/abs/0000.00000"
+#     code: "https://github.com/JayChou04/jaychou04.github.io"
+#     project: "/publications/example"
+#   bibtex: |
+#     @inproceedings{chou2026examplepaper,
+#           title={Example Paper: A Self-Hosted Publication Page},
+#           author={Shih-Chieh Chou and Ada Lovelace},
+#           booktitle={Proceedings of the Demo Conference},
+#           year={2026},
+#     }
+#   featured: false
+#   highlight: false
+#   tags: ["template"]

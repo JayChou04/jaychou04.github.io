@@ -5,20 +5,20 @@
 # TODO: replace with real experience.
 - title: "Research Assistant"
   org: "Human-Centered Intelligent System Lab, NYCU"
-  start: 2025-01-01
+  start: 2026-01-01
   end: present
   icon: "microscope"
 
 - title: "Software Engineer Intern"
   org: "Anvil Robotics"
   start: 2026-07-01
-  end: present
+  end: 2026-09-05
   icon: "briefcase"
 
 - title: "Visiting Scholar"
   org: "Existential Robotics Lab, UC San Diego"
   start: 2025-06-29
-  end: 2025-09-01
+  end: 2025-08-31
   icon: "microscope"
 
 - title: "Undergraduate Researcher"

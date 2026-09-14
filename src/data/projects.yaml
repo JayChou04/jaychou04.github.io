@@ -3,19 +3,34 @@
 # (the card links to /projects/<slug>). Fields: slug, title, authors, date, venue?, tags,
 # thumbnail, blurb, featured, highlight?, links{paper?,code?,video?,dataset?}, bibtex?.
 - slug: im2prop
-  title: "From Image to Properties: A Paired-Seed Comparison of Hand-Crafted, Generic, and Domain-Specific Representations for Hardness Regression on Duplex Stainless Steel"
+  title: "Comming Soon"
   authors:
-    - "Shih-Chieh Chou"
-    - "I-Chieh Cheng"
-    - "Bo-Shiuan Li"
   date: 2026-02-28
   # venue: "Demo Venue 2026"
-  tags: ["Template", "Demo"]
+  tags: []
   # thumbnail: "/placeholder.svg"
-  blurb: "A starter project page you can copy — full HTML/CSS control with a shared header."
+  blurb: "Comming Soon"
   featured: true
   highlight: false
   links:
-    technicalreport: "https://arxiv.org/abs/0000.00000"
-    code: "https://github.com/JayChou04/jaychou04.github.io"
-    dataset: "test"
+    # technicalreport: "https://arxiv.org/abs/0000.00000"
+    # code: "https://github.com/JayChou04/jaychou04.github.io"
+    # dataset: "test"
+
+# - slug: im2prop
+#   title: "From Image to Properties: A Paired-Seed Comparison of Hand-Crafted, Generic, and Domain-Specific Representations for Hardness Regression on Duplex Stainless Steel"
+#   authors:
+#     - "Shih-Chieh Chou"
+#     - "I-Chieh Cheng"
+#     - "Bo-Shiuan Li"
+#   date: 2026-02-28
+#   # venue: "Demo Venue 2026"
+#   tags: []
+#   # thumbnail: "/placeholder.svg"
+#   blurb: "A starter project page you can copy — full HTML/CSS control with a shared header."
+#   featured: true
+#   highlight: false
+#   links:
+#     technicalreport: "https://arxiv.org/abs/0000.00000"
+#     code: "https://github.com/JayChou04/jaychou04.github.io"
+#     dataset: "test"
