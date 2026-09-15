@@ -9,7 +9,8 @@ interface Props {
 }
 
 const { project, showTags = false } = Astro.props;
-const href = `/projects/${project.slug}`;
+const href = project.links?.project ?? `/projects/${project.slug}`;
+const external = href.startsWith('http');
 const id = `bib-proj-${project.slug}`;
 ---
 
@@ -19,12 +20,12 @@ const id = `bib-proj-${project.slug}`;
 >
   {project.thumbnail && (
     <div class="proj-thumb">
-      <a href={href}><img src={project.thumbnail} alt="" loading="lazy" /></a>
+      <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}><img src={project.thumbnail} alt="" loading="lazy" /></a>
     </div>
   )}
   <div class="proj-body">
     <h3 class="proj-title">
-      <a href={href}>{project.title}</a>
+      <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>{project.title}</a>
     </h3>
     {project.authors?.length > 0 && (
       <p class="proj-authors">
@@ -55,6 +56,11 @@ const id = `bib-proj-${project.slug}`;
       {project.links?.video && (
         <a class="action-button" href={project.links.video} target="_blank" rel="noopener">
           <Icon name="tabler:player-play" /> Video
+        </a>
+      )}
+      {project.links?.project && (
+        <a class="action-button" href={project.links.project} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+          <Icon name="tabler:layout-grid" /> Project
         </a>
       )}
       {project.links?.dataset && (

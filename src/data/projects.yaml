@@ -1,21 +1,22 @@
-# Project metadata. Each entry renders a card on the home page + /projects grid.
-# The detail page for each project is a hand-written .astro file at src/pages/projects/<slug>.astro
-# (the card links to /projects/<slug>). Fields: slug, title, authors, date, venue?, tags,
-# thumbnail, blurb, featured, highlight?, links{paper?,code?,video?,dataset?}, bibtex?.
-- slug: im2prop
-  title: "Comming Soon"
+# Project metadata. Each entry renders a card on the home page + /projects list.
+# A card links to links.project when set (an external page opens in a new tab); otherwise to the
+# hand-written detail page at src/pages/projects/<slug>.astro. Fields: slug, title, authors, date,
+# venue?, tags (single words: the /projects filter splits on spaces), thumbnail?, blurb, featured,
+# highlight?, links{technicalreport?, code?, video?, dataset?, project?}, bibtex?.
+- slug: anvil-prehensile
+  title: "Anvil-Prehensile: A glove-to-hand teleoperation stack for dexterous manipulation"
   authors:
-  date: 2026-02-28
-  # venue: "Demo Venue 2026"
+    - "Shih-Chieh Chou"
+  date: 2026-09-01
   tags: []
-  # thumbnail: "/placeholder.svg"
-  blurb: "Comming Soon"
+  thumbnail: "/projects/anvil-prehensile/thumb.jpg"
+  blurb: "Glove-to-hand teleoperation stack that lets UDCap and Wuji data gloves drive the REALHAND L6 dexterous hand."
   featured: true
   highlight: false
   links:
-    # technicalreport: "https://arxiv.org/abs/0000.00000"
-    # code: "https://github.com/JayChou04/jaychou04.github.io"
-    # dataset: "test"
+    code: "https://github.com/anvil-robotics/anvil-prehensile"
+    project: "https://jaychou04.github.io/anvil-prehensile-page/"
+
 
 # - slug: im2prop
 #   title: "From Image to Properties: A Paired-Seed Comparison of Hand-Crafted, Generic, and Domain-Specific Representations for Hardness Regression on Duplex Stainless Steel"
