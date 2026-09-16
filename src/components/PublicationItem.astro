@@ -13,6 +13,7 @@ type PubLinks = {
 type Publication = {
   title: string;
   authors: string[];
+  note?: string;
   venue: string;
   year: number;
   thumbnail?: string;
@@ -53,6 +54,7 @@ const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^
         </>
       ))}
     </p>
+    {pub.note && <p class="pub-note">{pub.note}</p>}
     <p class="pub-meta meta">{pub.venue} · {pub.year}</p>
     <div class="pub-actions">
       {pub.links?.paper && (
@@ -142,6 +144,12 @@ const id = `bib-${pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^
     color: var(--text-secondary);
   }
   .pub-authors strong { color: var(--text); font-weight: 600; }
+  .pub-note {
+    margin: 0 0 0.1rem;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
   .pub-meta { margin: 0 0 0.55rem; }
   .pub-actions {
     display: flex;

@@ -2,24 +2,24 @@
 # Optional: add `highlight: true` to give an entry a yellow background highlight.
 # TODO: replace with real awards
 - title: "3rd Place in Lab Experiment Track (Vienna track)"
-  granter: "2nd What Bimanuals Can Do Competition"
+  granter: "2nd What Bimanuals Can Do Challenge"
   date: 2026-06-04
   icon: "trophy"
 
-- title: "Outstanding Bachelor Graduate Award"
+- title: "Outstanding Graduating Senior Award"
   granter: "National Sun Yat-sen University"
-  date: 2026-05-23
+  date: 2026-06-12
   icon: "award"
   highlight: true
 
 - title: "College Student Research Grant"
   granter: "National Science and Technology Council"
-  date: 2025-06-30
+  date: 2025-07-30
   icon: "certificate"
 
 - title: "J. Yang & Family Foundation Scholarship"
   granter: "J. Yang & Family Foundation"
-  date: 2025-07-01
+  date: 2025-04-01
   icon: "certificate"
 
 - title: "Excellent Student Award, Sophomore Fall Semester"

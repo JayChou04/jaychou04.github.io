@@ -1,5 +1,6 @@
 # TODO: replace with real publications; full list (featured ones surface on the home page).
 # Optional per entry: `highlight: true` adds a yellow background highlight.
+# Optional per entry: `note: "..."` renders one extra line between the authors and the venue.
 - title: "Rainbow-DemoRL: Combining Improvements in Demonstration-Augmented Reinforcement Learning"
   authors:
     - "Dwait Bhatt"
@@ -12,25 +13,16 @@
     paper: "https://arxiv.org/abs/2603.27400"
     code: "https://github.com/dwaitbhatt/Rainbow-DemoRL"
     project: "https://dwaitbhatt.com/Rainbow-DemoRL/"
-  bibtex: |
-    @misc{bhatt2026rainbowdemorlcombiningimprovementsdemonstrationaugmented,
-          title={Rainbow-DemoRL: Combining Improvements in Demonstration-Augmented Reinforcement Learning}, 
-          author={Dwait Bhatt and Shih-Chieh Chou and Nikolay Atanasov},
-          year={2026},
-          eprint={2603.27400},
-          archivePrefix={arXiv},
-          primaryClass={cs.RO},
-          url={https://arxiv.org/abs/2603.27400}, 
-    }
   featured: true
   highlight: false
   tags:
 
-- title: "From Images to Properties: Machine Learning for Microstructure-Based Predictions"
+- title: "From Images to Properties: Deep Learning for Microstructure Property Prediction"
   authors:
     - "Shih-Chieh Chou"
     - "I-Chieh Cheng"
-    - "Bo-Shiuan Li (Oral Presentation)"
+    - "Bo-Shiuan Li"
+  note: "Oral Presentation, with the title: From Images to Properties: Machine Learning for Microstructure-Based Predictions"
   venue: "The 22nd International Conference on Automation Technology (Automation)"
   year: 2025
   links:

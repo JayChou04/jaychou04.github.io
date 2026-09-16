@@ -4,7 +4,7 @@
 # venue?, tags (single words: the /projects filter splits on spaces), thumbnail?, blurb, featured,
 # highlight?, links{technicalreport?, code?, video?, dataset?, project?}, bibtex?.
 - slug: anvil-prehensile
-  title: "Anvil-Prehensile: A glove-to-hand teleoperation stack for dexterous manipulation"
+  title: "Anvil-Prehensile: A Glove-to-Hand Teleoperation Stack for Dexterous Manipulation"
   authors:
     - "Shih-Chieh Chou"
   date: 2026-09-01
